@@ -1,4 +1,5 @@
 from tkinter import *
+import random
 playerScore = 0
 computerScore = 0
 rps = [('rock', 0), ('paper', 0), ('scissors', 0)]
@@ -18,6 +19,38 @@ def playerWins():
     WinnerLabel.config(text = "Winner : You")
     CompScoreLabel.config(text = "Computer Score : " + str(computerScore))
     PlayerScoreLabel.config(text = "Your Score : " + str(playerScore))
+    
+def noWin():
+    global computerScore
+    global playerScore
+    WinnerLabel.config(text = "Winner : Tie, no points earned")
+    CompScoreLabel.config(text = "Computer Score : " + str(computerScore))
+    PlayerScoreLabel.config(text = "Your Score : " + str(playerScore))
+
+def playerChoice(playerInput):
+    playerChoiceLabel.config(text = "You Selected : " + playerInput[0])
+    computerInput = computerChoice()
+    CompChoiceLabel.config(text = "Computer Selected : " + computerInput[0])
+    if playerInput == computerInput:
+        noWin()
+    if playerInput[1] == 0:
+        if computerInput[1] == 1:
+            compWins()
+        elif computerInput[1] == 2:
+            playerWins()
+    if playerInput[1] == 1:
+        if computerInput[1] == 2:
+            compWins()
+        elif computerInput[1] == 0:
+            playerWins()
+    if playerInput[1] == 2:
+        if computerInput[1] == 0:
+            compWins()
+        elif computerInput[1] == 1:
+            playerWins()
+
+def computerChoice():
+    return random.choice(rps)
 
 root = Tk()
 root.geometry("600x300")
@@ -29,11 +62,11 @@ optionsLabel = Label(root, text="Your Options :")
 optionsLabel.grid(row=2, column=0)
 resultLabel = Label(root, text="")
 resultLabel.grid(row=1, column=2)
-rockButton = Button(root, text="Rock")
+rockButton = Button(root, text="Rock", command=lambda:playerChoice(rps[0]))
 rockButton.grid(row=3, column=1)
-paperButton = Button(root, text="Paper")
+paperButton = Button(root, text="Paper", command=lambda:playerChoice(rps[1]))
 paperButton.grid(row=3, column=2)
-ScissorsButton = Button(root, text="Scissors")
+ScissorsButton = Button(root, text="Scissors", command=lambda:playerChoice(rps[2]))
 ScissorsButton.grid(row=3, column = 3)
 playerChoiceLabel = Label(root, text="You Selected : _____")
 playerChoiceLabel.grid(row=4, column=1)
