@@ -2,7 +2,7 @@ from tkinter import *
 import random
 playerScore = 0
 computerScore = 0
-rps = [('rock', 0), ('paper', 0), ('scissors', 0)]
+rps = [('rock', 0), ('paper', 1), ('scissors', 2)]
 
 def compWins():
     global computerScore
@@ -11,6 +11,7 @@ def compWins():
     WinnerLabel.config(text = "Winner : Computer")
     CompScoreLabel.config(text = "Computer Score : " + str(computerScore))
     PlayerScoreLabel.config(text = "Your Score : " + str(playerScore))
+    print("computer win")
 
 def playerWins():
     global computerScore
@@ -19,6 +20,7 @@ def playerWins():
     WinnerLabel.config(text = "Winner : You")
     CompScoreLabel.config(text = "Computer Score : " + str(computerScore))
     PlayerScoreLabel.config(text = "Your Score : " + str(playerScore))
+    print("player win")
     
 def noWin():
     global computerScore
@@ -33,6 +35,7 @@ def playerChoice(playerInput):
     CompChoiceLabel.config(text = "Computer Selected : " + computerInput[0])
     if playerInput == computerInput:
         noWin()
+        return
     if playerInput[1] == 0:
         if computerInput[1] == 1:
             compWins()
