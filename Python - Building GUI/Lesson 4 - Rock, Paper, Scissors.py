@@ -65,7 +65,7 @@ optionsLabel = Label(root, text="Your Options :")
 optionsLabel.grid(row=2, column=0)
 resultLabel = Label(root, text="")
 resultLabel.grid(row=1, column=2)
-rockButton = Button(root, text="Rock", command=lambda:playerChoice(rps[0]))
+rockButton = Button(root, text="Rock", command=lambda:playerChoice(rps[0])) #lambda is a small function that is defined in a single line. It is used here because only one index of the list 'rps' is needed.
 rockButton.grid(row=3, column=1)
 paperButton = Button(root, text="Paper", command=lambda:playerChoice(rps[1]))
 paperButton.grid(row=3, column=2)
